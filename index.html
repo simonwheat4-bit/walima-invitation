@@ -8,7 +8,7 @@
   <!-- Meta for Social Sharing (WhatsApp, Facebook, Twitter) -->
   <meta property="og:title" content="Valima Reception — Ubaid-ur-Rehman & Daughter of Nawaz Qureshi">
   <meta property="og:description" content="Mrs. Aqeel Ahmed Farooqui cordially invites you to the Valima Reception of her son Ubaid-ur-Rehman on Thursday, 14th January 2027 at Grand Sapphire Banquet, Karachi.">
-  <meta property="og:image" content="images/pakistani_couple.jpg">
+  <meta property="og:image" content="images/royal_cover_folio.jpg">
   <meta property="og:type" content="website">
 
   <!-- Google Fonts: Cormorant Garamond, Cinzel, Alex Brush, Amiri, Montserrat -->
@@ -113,9 +113,17 @@
       background: linear-gradient(135deg, #fef4da 0%, #dfb559 30%, #c59837 60%, #996f1d 100%);
       border: 1.5px solid #8a6320;
       box-shadow: 
-        0 6px 22px rgba(138, 99, 32, 0.35),
+        0 8px 25px rgba(138, 99, 32, 0.4),
         inset 0 1.5px 1px rgba(255, 255, 255, 0.9),
         inset 0 -1.5px 1px rgba(90, 60, 15, 0.5);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-gold-shimmer:hover {
+      transform: scale(1.03) translateY(-2px);
+      box-shadow: 
+        0 14px 35px rgba(138, 99, 32, 0.5),
+        inset 0 2px 2px rgba(255, 255, 255, 1),
+        0 0 20px rgba(212, 175, 55, 0.6);
     }
     .btn-gold-shimmer::after {
       content: '';
@@ -127,10 +135,10 @@
       background: linear-gradient(
         90deg,
         rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.65) 50%,
+        rgba(255, 255, 255, 0.75) 50%,
         rgba(255, 255, 255, 0) 100%
       );
-      animation: shimmerSlide 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      animation: shimmerSlide 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
 
     /* Royal Folio Background (Ivory & Warm Cream Palace Theme) */
@@ -142,15 +150,23 @@
         radial-gradient(circle at 85% 85%, rgba(212, 175, 55, 0.15) 0%, transparent 45%);
     }
 
-    /* Parchment Card Frame */
-    .parchment-frame {
-      background: rgba(253, 251, 247, 0.96);
-      backdrop-filter: blur(14px);
-      border: 1.5px solid rgba(197, 160, 89, 0.7);
-      box-shadow: 
-        0 25px 65px -15px rgba(60, 36, 32, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.85) inset,
-        0 0 35px rgba(212, 175, 55, 0.18);
+    /* 3D Interactive Folio Card Presentation */
+    .folio-3d-wrapper {
+      transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    /* Specular Glare Layer */
+    .specular-glare {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: 2.2rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      mix-blend-mode: overlay;
+      z-index: 15;
     }
 
     /* Floating Petals & Gold Dust */
@@ -166,7 +182,7 @@
       background: radial-gradient(circle, #ffe285 0%, #d4af37 60%, transparent 100%);
       border-radius: 50%;
       pointer-events: none;
-      filter: drop-shadow(0 0 4px #eab308);
+      filter: drop-shadow(0 0 5px #eab308);
       animation: floatDustAnim linear infinite;
     }
     @keyframes floatPetalAnim {
@@ -284,6 +300,33 @@
       background-size: 20px 20px;
       background-position: 0 0, 10px 10px;
     }
+
+    /* Hover Lift & Glow Animations on Interactive Elements */
+    .hover-lift {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(197, 160, 89, 0.3);
+      border-color: #c5a059;
+    }
+
+    .hover-glow {
+      transition: all 0.3s ease;
+    }
+    .hover-glow:hover {
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+    }
+
+    /* Gentle Floating Sway for Lanterns */
+    @keyframes lanternSway {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+    .lantern-sway {
+      transform-origin: top center;
+      animation: lanternSway 3.5s ease-in-out infinite;
+    }
   </style>
 </head>
 <body class="bg-[#15120f] text-regal-rosewood antialiased selection:bg-ivory-warm selection:text-gold-dark overflow-x-hidden font-serif">
@@ -297,14 +340,14 @@
   <!-- 2. FLOATING NAVIGATION BAR (ALWAYS ACCESSIBLE) -->
   <!-- ========================================================================= -->
   <header aria-label="Controls" class="fixed top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 z-40 flex items-center justify-between pointer-events-none max-w-xl mx-auto">
-    <!-- Back to Cover Button -->
-    <button id="backToCoverBtn" onclick="closeInvitation()" class="pointer-events-auto flex items-center gap-1.5 sm:gap-2 px-3.5 py-2 rounded-full bg-ivory-cream/95 backdrop-blur-md border border-gold/70 shadow-lg text-xs font-cinzel font-bold text-regal-emerald hover:border-gold-metallic hover:bg-ivory-warm/40 hover:scale-105 active:scale-95 transition-all">
+    <!-- Back to Cover Button with Hover Lift -->
+    <button id="backToCoverBtn" onclick="closeInvitation()" class="pointer-events-auto flex items-center gap-1.5 sm:gap-2 px-4 py-2 rounded-full bg-ivory-cream/95 backdrop-blur-md border border-gold/70 shadow-lg text-xs font-cinzel font-bold text-regal-emerald hover:border-gold-metallic hover:bg-ivory-warm/40 hover:scale-105 active:scale-95 transition-all cursor-pointer">
       <i data-lucide="chevron-left" class="w-4 h-4 text-gold-dark"></i>
       <span class="tracking-widest uppercase text-[10px] sm:text-[11px]">Back to Cover</span>
     </button>
 
     <!-- Music Controller with Sound Bars -->
-    <button id="musicToggle" class="pointer-events-auto flex items-center gap-2 px-3.5 py-2 rounded-full bg-ivory-cream/95 backdrop-blur-md border border-gold/70 shadow-lg text-xs font-sans font-semibold text-regal-rosewood hover:border-gold-metallic hover:shadow-xl transition-all">
+    <button id="musicToggle" class="pointer-events-auto flex items-center gap-2 px-3.5 py-2 rounded-full bg-ivory-cream/95 backdrop-blur-md border border-gold/70 shadow-lg text-xs font-sans font-semibold text-regal-rosewood hover:border-gold-metallic hover:scale-105 hover:shadow-xl transition-all cursor-pointer">
       <div id="soundBars" class="flex items-end h-4 paused">
         <span class="sound-bar"></span>
         <span class="sound-bar"></span>
@@ -318,143 +361,62 @@
 
 
   <!-- ========================================================================= -->
-  <!-- 1. THE OPENING ROYAL FOLIO (COVER SCREEN) -->
+  <!-- 1. THE OPENING ROYAL FOLIO (COVER SCREEN) - MATCHING UPLOADED REFERENCE -->
   <!-- ========================================================================= -->
   <section id="openingFolio" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 ivory-palace-bg text-regal-rosewood folio-cover select-none overflow-y-auto">
     
     <!-- Ambient Rose Petals & Gold Dust Particles -->
     <div id="introParticles" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
 
-    <!-- The Grand Royal Folio Card -->
-    <div class="relative z-10 parchment-frame max-w-[440px] w-full rounded-[2.5rem] px-5 py-6 sm:px-8 sm:py-7 text-center overflow-hidden my-auto">
+    <!-- Hanging Gold Filigree Lanterns (Fanoos) with Gentle Sway -->
+    <div class="fixed top-2 left-3 sm:left-6 w-8 sm:w-10 pointer-events-none z-20 opacity-90 drop-shadow-md lantern-sway hidden sm:block">
+      <svg viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
+        <line x1="20" y1="0" x2="20" y2="34" stroke="#c5a059" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <path d="M12 34 C12 34, 20 28, 28 34 L32 54 C32 64, 20 72, 20 72 C20 72, 8 64, 8 54 Z" fill="#fff9e6" stroke="#8a6320" stroke-width="1.5"/>
+        <circle cx="20" cy="52" r="5" fill="#ffd700" filter="drop-shadow(0 0 8px #f59e0b)"/>
+        <line x1="20" y1="72" x2="20" y2="86" stroke="#8a6320" stroke-width="1.5"/>
+        <circle cx="20" cy="86" r="2.5" fill="#8a6320"/>
+      </svg>
+    </div>
+
+    <div class="fixed top-2 right-3 sm:right-6 w-8 sm:w-10 pointer-events-none z-20 opacity-90 drop-shadow-md lantern-sway hidden sm:block" style="animation-delay: -1.75s;">
+      <svg viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
+        <line x1="20" y1="0" x2="20" y2="34" stroke="#c5a059" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <path d="M12 34 C12 34, 20 28, 28 34 L32 54 C32 64, 20 72, 20 72 C20 72, 8 64, 8 54 Z" fill="#fff9e6" stroke="#8a6320" stroke-width="1.5"/>
+        <circle cx="20" cy="52" r="5" fill="#ffd700" filter="drop-shadow(0 0 8px #f59e0b)"/>
+        <line x1="20" y1="72" x2="20" y2="86" stroke="#8a6320" stroke-width="1.5"/>
+        <circle cx="20" cy="86" r="2.5" fill="#8a6320"/>
+      </svg>
+    </div>
+
+    <!-- The 3D Interactive Royal Folio Card Container with Parallax Hover -->
+    <div id="folioCardWrapper" class="folio-3d-wrapper relative z-10 max-w-[430px] w-full rounded-[2.3rem] overflow-hidden my-auto shadow-[0_25px_60px_-10px_rgba(138,99,32,0.4),0_0_0_2px_rgba(212,175,55,0.7)] group cursor-pointer bg-[#fdfbf7]" onclick="openFolio()">
       
-      <!-- Hanging Gold Filigree Lanterns (Fanoos) with Glowing SVGs -->
-      <div class="absolute top-2 left-4 w-7 sm:w-8 pointer-events-none opacity-90 drop-shadow-md">
-        <svg viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
-          <line x1="20" y1="0" x2="20" y2="34" stroke="#c5a059" stroke-width="1.5" stroke-dasharray="2 2"/>
-          <path d="M12 34 C12 34, 20 28, 28 34 L32 54 C32 64, 20 72, 20 72 C20 72, 8 64, 8 54 Z" fill="#fff9e6" stroke="#8a6320" stroke-width="1.5"/>
-          <circle cx="20" cy="52" r="5" fill="#ffd700" filter="drop-shadow(0 0 6px #f59e0b)"/>
-          <line x1="20" y1="72" x2="20" y2="86" stroke="#8a6320" stroke-width="1.5"/>
-          <circle cx="20" cy="86" r="2" fill="#8a6320"/>
-        </svg>
-      </div>
+      <!-- Specular Dynamic Glare Layer that follows mouse -->
+      <div id="folioCardGleam" class="specular-glare"></div>
 
-      <div class="absolute top-2 right-4 w-7 sm:w-8 pointer-events-none opacity-90 drop-shadow-md">
-        <svg viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
-          <line x1="20" y1="0" x2="20" y2="34" stroke="#c5a059" stroke-width="1.5" stroke-dasharray="2 2"/>
-          <path d="M12 34 C12 34, 20 28, 28 34 L32 54 C32 64, 20 72, 20 72 C20 72, 8 64, 8 54 Z" fill="#fff9e6" stroke="#8a6320" stroke-width="1.5"/>
-          <circle cx="20" cy="52" r="5" fill="#ffd700" filter="drop-shadow(0 0 6px #f59e0b)"/>
-          <line x1="20" y1="72" x2="20" y2="86" stroke="#8a6320" stroke-width="1.5"/>
-          <circle cx="20" cy="86" r="2" fill="#8a6320"/>
-        </svg>
-      </div>
+      <!-- The High-Resolution Royal Embossed Card Artwork -->
+      <div class="relative w-full overflow-hidden select-none">
+        <img src="images/royal_cover_folio.jpg" alt="Royal Valima Invitation Card" class="w-full h-auto block rounded-[2.3rem] transition-transform duration-500 group-hover:scale-[1.015]">
 
-      <!-- Ornate Mughal Arch Header -->
-      <div class="max-w-[200px] mx-auto mb-2 opacity-85">
-        <svg viewBox="0 0 200 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
-          <path d="M10 32 C40 12, 70 6, 100 6 C130 6, 160 12, 190 32" stroke="#c5a059" stroke-width="1.5"/>
-          <path d="M30 32 C60 18, 80 14, 100 14 C120 14, 140 18, 170 32" stroke="#d4af37" stroke-width="1" stroke-dasharray="3 3"/>
-          <circle cx="100" cy="6" r="3" fill="#8a6320"/>
-        </svg>
-      </div>
+        <!-- Interactive Animated Overlay Over The Button Position -->
+        <div class="absolute bottom-[6.5%] left-0 right-0 px-7 sm:px-9 flex flex-col items-center z-20 pointer-events-auto" onclick="event.stopPropagation(); openFolio();">
+          
+          <!-- Pulsing & Shimmering Gold Button -->
+          <button id="openFolioBtn" class="btn-gold-shimmer w-full py-3 sm:py-3.5 px-6 rounded-full text-regal-rosewood font-cinzel font-black text-xs sm:text-sm tracking-[0.24em] uppercase flex items-center justify-center gap-2.5 shadow-xl transition-all cursor-pointer">
+            <i data-lucide="book-open" class="w-4 h-4 text-regal-rosewood"></i>
+            <span>TAP TO OPEN FOLIO</span>
+            <i data-lucide="sparkles" class="w-4 h-4 text-regal-rosewood transition-transform group-hover:rotate-45"></i>
+          </button>
 
-      <!-- Authentic Arabic Bismillah with Subtitle -->
-      <div class="my-4 pt-1 pb-1">
-        <div class="font-arabic text-2xl sm:text-3xl text-regal-emerald font-bold leading-[2.6] drop-shadow-xs block">
-          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-        </div>
-        <p class="font-cinzel text-[9.5px] sm:text-[10.5px] tracking-[0.32em] uppercase text-regal-emerald/90 font-bold pt-2.5 block">
-          In The Name Of Almighty Allah
-        </p>
-      </div>
-
-      <!-- Host Family Honorific Badge -->
-      <div class="my-2">
-        <p class="font-cinzel text-[10px] sm:text-[11px] tracking-[0.24em] uppercase text-regal-rosewood/90 font-bold">
-          Mrs. Aqeel Ahmed Farooqui
-        </p>
-        <p class="font-serif italic text-xs text-regal-emerald mt-0.5">
-          Cordially invites you to the Valima Reception of her beloved son
-        </p>
-      </div>
-
-      <!-- The Royal Monogram Seal (Crest) - Perfect Proportions w-36 h-36 strictly contained -->
-      <div class="my-3 inline-block">
-        <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-full border-2 border-gold flex items-center justify-center p-2.5 seal-pulse bg-gradient-to-b from-[#fffef9] via-[#fbf3e2] to-[#f4e2be] mx-auto shadow-lg relative">
-          <!-- Inner Stitched Gold Border Ring -->
-          <div class="w-full h-full rounded-full border border-dashed border-gold-dark/70 flex flex-col items-center justify-center relative bg-white/80 shadow-inner px-2 py-1 overflow-hidden">
-            <span class="font-cinzel text-[8.5px] sm:text-[9.5px] tracking-[0.3em] uppercase text-gold-dark font-bold">THE VALIMA</span>
-            <div class="w-8 h-[1px] bg-gold/50 my-1"></div>
-            <!-- Monogram Initials U & J -->
-            <div class="flex items-center justify-center gap-1.5 my-1">
-              <span class="font-serif text-3xl sm:text-4xl font-bold text-regal-emerald leading-none">U</span>
-              <span class="font-serif italic text-2xl sm:text-3xl text-gold-dark font-bold leading-none mx-0.5">&amp;</span>
-              <span class="font-serif text-3xl sm:text-4xl font-bold text-regal-emerald leading-none">J</span>
-            </div>
-            <div class="w-8 h-[1px] bg-gold/50 my-1"></div>
-            <span class="font-cinzel text-[8.5px] sm:text-[9.5px] tracking-[0.32em] uppercase text-gold-dark font-bold">2027</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Couple Presentation: Valima Order (Groom First, With Bride) -->
-      <div class="my-2.5">
-        <!-- Groom -->
-        <h1 class="font-serif italic text-3xl sm:text-4xl text-regal-emerald font-bold tracking-tight">
-          Ubaid-ur-Rehman
-        </h1>
-        <p class="font-cinzel text-[9.5px] sm:text-[10.5px] tracking-[0.2em] uppercase text-gold-dark font-bold mt-0.5">
-          S/O. Aqeel Ahmed Farooqui (Late)
-        </p>
-
-        <!-- Ornate WITH Divider -->
-        <div class="flex items-center justify-center gap-3 my-1">
-          <span class="h-px w-8 bg-gold/60"></span>
-          <span class="font-cinzel text-[10px] tracking-[0.3em] uppercase font-bold text-regal-rosewood">WITH</span>
-          <span class="h-px w-8 bg-gold/60"></span>
+          <!-- Audio Prompt with Note Icon -->
+          <p class="mt-2 text-[10px] sm:text-[10.5px] font-sans text-regal-rosewood/85 font-semibold tracking-wide flex items-center justify-center gap-1.5 drop-shadow-xs">
+            <i data-lucide="music" class="w-3 h-3 text-gold-dark"></i>
+            <span>Opens with celebratory royal music &amp; gold confetti</span>
+          </p>
         </div>
 
-        <!-- Bride -->
-        <h2 class="font-serif italic text-2xl sm:text-3xl text-regal-emerald font-bold tracking-tight">
-          Daughter of Nawaz Qureshi
-        </h2>
       </div>
-
-      <!-- Date & Venue Capsule (Gold Pill Badge) -->
-      <div class="my-3 space-y-1.5 max-w-xs mx-auto">
-        <div class="py-1.5 px-3.5 rounded-full border border-gold bg-[#fffdfa] shadow-xs flex items-center justify-center gap-2">
-          <i data-lucide="calendar" class="w-3.5 h-3.5 text-gold-dark"></i>
-          <span class="font-cinzel text-[11px] sm:text-xs font-bold tracking-[0.18em] uppercase text-regal-emerald">
-            Thursday, 14 January 2027
-          </span>
-        </div>
-        <div class="flex items-center justify-center gap-2 text-[10px] sm:text-[10.5px] font-sans font-bold uppercase tracking-wider text-regal-rosewood/85">
-          <span class="flex items-center gap-1">
-            <i data-lucide="clock" class="w-3 h-3 text-gold-dark"></i>
-            08:00 PM
-          </span>
-          <span>•</span>
-          <span class="flex items-center gap-1">
-            <i data-lucide="map-pin" class="w-3 h-3 text-gold-dark"></i>
-            Grand Sapphire Banquet
-          </span>
-        </div>
-      </div>
-
-      <!-- Folio Seal Action Button with Shimmer & Pulse -->
-      <div class="mt-4 mb-2">
-        <button id="openFolioBtn" class="btn-gold-shimmer group w-full py-3.5 px-6 rounded-full text-regal-rosewood font-cinzel font-black text-xs sm:text-sm tracking-[0.25em] uppercase transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2.5 shadow-md">
-          <i data-lucide="book-open" class="w-4 h-4 text-regal-rosewood"></i>
-          <span>Tap to Open Folio</span>
-          <i data-lucide="sparkles" class="w-4 h-4 text-regal-rosewood transition-transform group-hover:rotate-12"></i>
-        </button>
-      </div>
-
-      <!-- Audio note -->
-      <p class="mt-2 text-[10px] sm:text-[11px] font-sans text-regal-rosewood/75 font-semibold tracking-wide flex items-center justify-center gap-1.5">
-        <i data-lucide="music" class="w-3 h-3 text-gold-dark"></i>
-        <span>Opens with celebratory royal music &amp; gold confetti</span>
-      </p>
 
     </div>
   </section>
@@ -468,14 +430,14 @@
     <!-- Floating Petals Container for Inside View -->
     <div id="mainPetals" class="fixed inset-0 pointer-events-none z-10 overflow-hidden"></div>
 
-    <!-- Parchment Card Frame Container -->
+    <!-- Parchment Card Frame Container with Hover Depth -->
     <div class="w-full max-w-[640px] luxury-paper-bg shadow-[0_25px_80px_rgba(0,0,0,0.65)] rounded-3xl overflow-hidden border-2 border-gold/50 relative text-center">
 
-      <!-- Corner Floral Filigree Ornaments -->
-      <div class="ornate-corner-tl"></div>
-      <div class="ornate-corner-tr"></div>
-      <div class="ornate-corner-bl"></div>
-      <div class="ornate-corner-br"></div>
+      <!-- Corner Floral Filigree Ornaments with Hover Gleam -->
+      <div class="ornate-corner-tl hover-glow"></div>
+      <div class="ornate-corner-tr hover-glow"></div>
+      <div class="ornate-corner-bl hover-glow"></div>
+      <div class="ornate-corner-br hover-glow"></div>
 
       <!-- Inner Double Border Line -->
       <div class="absolute inset-2 sm:inset-3 border border-gold/30 rounded-[1.4rem] pointer-events-none"></div>
@@ -483,12 +445,12 @@
       <!-- Top Royal Header Section -->
       <div class="pt-10 sm:pt-12 px-6 sm:px-12 pb-4 relative scroll-reveal">
         
-        <!-- Bismillah In Authentic Arabic -->
-        <div class="mb-5 pt-2">
-          <div class="font-arabic text-3xl sm:text-4xl text-regal-emerald font-bold leading-[2.3] pb-2 drop-shadow-xs">
+        <!-- Bismillah In Authentic Arabic with Perfect Line Height & Spacing -->
+        <div class="my-5 pt-2 pb-1">
+          <div class="font-arabic text-3xl sm:text-4xl text-regal-emerald font-bold leading-[2.6] drop-shadow-xs block">
             بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
           </div>
-          <p class="font-cinzel text-[10px] sm:text-xs tracking-[0.28em] uppercase text-gold-dark font-bold mt-2">
+          <p class="font-cinzel text-[10px] sm:text-xs tracking-[0.28em] uppercase text-gold-dark font-bold pt-2.5 block">
             In The Name Of Allah, The Most Beneficent, The Most Merciful
           </p>
         </div>
@@ -496,7 +458,7 @@
         <!-- Host Honorific Announcement Exactly Matching Wedding Card -->
         <div class="relative py-2 max-w-md mx-auto">
           <div class="inline-block relative">
-            <h2 class="font-cinzel text-lg sm:text-xl font-black tracking-[0.22em] uppercase text-regal-rosewood">
+            <h2 class="font-cinzel text-lg sm:text-xl font-black tracking-[0.22em] uppercase text-regal-rosewood hover:scale-105 transition-transform duration-300">
               Mrs. Aqeel Ahmed Farooqui
             </h2>
             <div class="h-0.5 w-20 bg-gold mx-auto mt-2"></div>
@@ -506,7 +468,7 @@
             Requests the pleasure of your presence &amp; blessings at the
           </p>
           <div class="my-2">
-            <span class="inline-block font-cinzel text-sm sm:text-base tracking-[0.28em] uppercase font-bold text-gold-dark px-4 py-1 rounded-full border border-gold/40 bg-ivory-sand/50">
+            <span class="inline-block font-cinzel text-sm sm:text-base tracking-[0.28em] uppercase font-bold text-gold-dark px-4 py-1 rounded-full border border-gold/40 bg-ivory-sand/50 shadow-xs hover:bg-gold-light/40 transition-colors">
               Valima Reception
             </span>
           </div>
@@ -521,7 +483,7 @@
         
         <!-- Groom's Name in Script with Shimmer -->
         <div class="mt-1 mb-2">
-          <h1 class="font-serif italic text-4xl sm:text-5xl text-regal-emerald font-bold tracking-normal leading-tight text-gold-shimmer">
+          <h1 class="font-serif italic text-4xl sm:text-5xl text-regal-emerald font-bold tracking-normal leading-tight text-gold-shimmer hover:scale-[1.02] transition-transform duration-300">
             Ubaid-ur-Rehman
           </h1>
           <p class="font-cinzel text-xs sm:text-sm tracking-[0.18em] uppercase font-bold text-gold-dark mt-1">
@@ -538,7 +500,7 @@
 
         <!-- Bride's Line Matching Physical Card -->
         <div class="mb-4">
-          <span class="font-serif italic text-3xl sm:text-4xl text-regal-emerald font-bold block mb-0.5">
+          <span class="font-serif italic text-3xl sm:text-4xl text-regal-emerald font-bold block mb-0.5 hover:scale-[1.02] transition-transform duration-300">
             Daughter of
           </span>
           <span class="font-cinzel text-base sm:text-lg font-extrabold tracking-[0.22em] uppercase text-regal-rosewood">
@@ -547,7 +509,7 @@
         </div>
 
         <!-- Quranic Blessing Card (Surah Ar-Rum 30:21) -->
-        <div class="my-6 p-4 sm:p-5 rounded-2xl bg-ivory-warm/30 border border-gold/40 text-regal-rosewood/90 text-xs sm:text-sm italic leading-relaxed shadow-xs max-w-lg mx-auto">
+        <div class="my-6 p-4 sm:p-5 rounded-2xl bg-ivory-warm/30 border border-gold/40 text-regal-rosewood/90 text-xs sm:text-sm italic leading-relaxed shadow-xs max-w-lg mx-auto hover-lift">
           <div class="font-arabic text-base sm:text-lg text-regal-emerald not-italic mb-3 font-bold leading-[2.2]">
             وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
           </div>
@@ -558,13 +520,13 @@
         </div>
       </div>
 
-      <!-- Couple Portrait: Pakistani Muslim Wedding Artwork (Clean Border, Zero Clutter) -->
+      <!-- Couple Portrait: Pakistani Muslim Wedding Artwork (Hover Zoom & Expand) -->
       <div class="px-6 sm:px-12 my-2 scroll-scale">
-        <div class="rounded-2xl overflow-hidden relative group cursor-pointer shadow-xl border-2 border-gold/50 outline outline-4 outline-ivory-warm/40" onclick="openPhotoModal()">
+        <div class="rounded-2xl overflow-hidden relative group cursor-pointer shadow-xl border-2 border-gold/50 outline outline-4 outline-ivory-warm/40 hover:outline-gold/60 transition-all duration-500" onclick="openPhotoModal()">
           <img src="images/pakistani_couple.jpg" alt="Pakistani Bride and Groom - Royal Valima Reception" class="w-full h-80 sm:h-96 object-cover object-top transition-transform duration-700 group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-center p-3 opacity-90 group-hover:opacity-100 transition-opacity">
-            <span class="text-white text-xs font-cinzel font-semibold tracking-widest uppercase flex items-center gap-1.5">
-              <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-gold-light"></i>
+            <span class="text-white text-xs font-cinzel font-semibold tracking-widest uppercase flex items-center gap-1.5 group-hover:text-gold-light transition-colors">
+              <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-gold-light group-hover:scale-125 transition-transform"></i>
               Tap to View Full Portrait
             </span>
           </div>
@@ -574,7 +536,7 @@
       <!-- Mark The Date & Live Countdown Timer -->
       <div class="py-7 px-6 sm:px-12 bg-gradient-to-b from-transparent via-ivory-sand/60 to-transparent my-4 scroll-reveal">
         <div class="font-cinzel text-xs tracking-[0.32em] uppercase text-gold-dark font-black mb-3 flex items-center justify-center gap-2">
-          <i data-lucide="calendar-heart" class="w-4 h-4 text-gold"></i>
+          <i data-lucide="calendar-heart" class="w-4 h-4 text-gold animate-bounce"></i>
           <span>Save The Auspicious Date</span>
         </div>
 
@@ -589,8 +551,8 @@
             <span class="block font-cinzel text-xs sm:text-sm tracking-widest uppercase font-bold text-warmgray">THURSDAY</span>
           </div>
 
-          <!-- Day 14 with Ornate Gold Dividers -->
-          <div class="px-5 sm:px-7 py-1 border-x-2 border-gold flex items-center justify-center bg-white/70 rounded-lg shadow-xs">
+          <!-- Day 14 with Ornate Gold Dividers & Hover Lift -->
+          <div class="px-5 sm:px-7 py-1 border-x-2 border-gold flex items-center justify-center bg-white/70 rounded-lg shadow-xs hover-lift cursor-default">
             <span class="font-cinzel text-4xl sm:text-5xl font-black text-regal-emerald tracking-tighter">14</span>
           </div>
 
@@ -600,37 +562,37 @@
           </div>
         </div>
 
-        <!-- Live Countdown Timer (4 Gold Framed Boxes) -->
+        <!-- Live Countdown Timer (4 Gold Framed Boxes with Hover Animation) -->
         <div class="mt-6 pt-5 border-t border-gold/30">
           <p class="font-cinzel text-[11px] tracking-[0.28em] uppercase text-regal-rosewood/80 font-bold mb-3">
             Countdown To The Celebration
           </p>
           <div class="grid grid-cols-4 gap-2 sm:gap-3 max-w-sm mx-auto">
-            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm">
+            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm hover-lift cursor-default">
               <span id="days" class="font-cinzel text-xl sm:text-2xl font-bold text-regal-emerald block">00</span>
               <span class="font-sans text-[9px] uppercase tracking-wider text-warmgray font-semibold">Days</span>
             </div>
-            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm">
+            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm hover-lift cursor-default">
               <span id="hours" class="font-cinzel text-xl sm:text-2xl font-bold text-regal-emerald block">00</span>
               <span class="font-sans text-[9px] uppercase tracking-wider text-warmgray font-semibold">Hours</span>
             </div>
-            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm">
+            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm hover-lift cursor-default">
               <span id="minutes" class="font-cinzel text-xl sm:text-2xl font-bold text-regal-emerald block">00</span>
               <span class="font-sans text-[9px] uppercase tracking-wider text-warmgray font-semibold">Mins</span>
             </div>
-            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm">
+            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm hover-lift cursor-default">
               <span id="seconds" class="font-cinzel text-xl sm:text-2xl font-bold text-gold-dark block">00</span>
               <span class="font-sans text-[9px] uppercase tracking-wider text-warmgray font-semibold">Secs</span>
             </div>
           </div>
 
-          <!-- Add to Calendar Buttons -->
+          <!-- Add to Calendar Buttons with Hover Effects -->
           <div class="flex flex-wrap items-center justify-center gap-2.5 mt-5">
-            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Valima+Reception:+Ubaid-ur-Rehman+%26+Daughter+of+Nawaz+Qureshi&dates=20270114T150000Z/20270114T180000Z&details=Valima+Reception+of+Ubaid-ur-Rehman+at+Grand+Sapphire+Banquet,+Karachi.+Gathering:+08:00+PM,+Dinner:+09:00+PM.&location=Grand+Sapphire+Banquet,+Coast+Guard+Chowrangi,+Near+Byco+Petrol+Pump,+Korangi+2.5,+Karachi" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-gold/60 text-regal-rosewood hover:border-gold hover:bg-ivory-warm/40 transition-all text-xs font-sans font-semibold shadow-xs">
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Valima+Reception:+Ubaid-ur-Rehman+%26+Daughter+of+Nawaz+Qureshi&dates=20270114T150000Z/20270114T180000Z&details=Valima+Reception+of+Ubaid-ur-Rehman+at+Grand+Sapphire+Banquet,+Karachi.+Gathering:+08:00+PM,+Dinner:+09:00+PM.&location=Grand+Sapphire+Banquet,+Coast+Guard+Chowrangi,+Near+Byco+Petrol+Pump,+Korangi+2.5,+Karachi" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-gold/60 text-regal-rosewood hover:border-gold hover:bg-ivory-warm/40 hover:scale-105 active:scale-95 transition-all text-xs font-sans font-semibold shadow-xs">
               <i data-lucide="calendar-plus" class="w-3.5 h-3.5 text-gold-dark"></i>
               <span>Add to Google Calendar</span>
             </a>
-            <button onclick="downloadICS()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-gold/60 text-regal-rosewood hover:border-gold hover:bg-ivory-warm/40 transition-all text-xs font-sans font-semibold shadow-xs">
+            <button onclick="downloadICS()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-gold/60 text-regal-rosewood hover:border-gold hover:bg-ivory-warm/40 hover:scale-105 active:scale-95 transition-all text-xs font-sans font-semibold shadow-xs cursor-pointer">
               <i data-lucide="download" class="w-3.5 h-3.5 text-gold-dark"></i>
               <span>Download Apple / iCal (.ics)</span>
             </button>
@@ -638,7 +600,7 @@
         </div>
       </div>
 
-      <!-- Ceremony Schedule / Program Timeline (Vertical Gold Roadmap) -->
+      <!-- Ceremony Schedule / Program Timeline (Vertical Gold Roadmap with Hover Slide) -->
       <div class="py-7 px-6 sm:px-12 scroll-reveal">
         <h3 class="font-cinzel text-sm sm:text-base font-black tracking-[0.28em] uppercase text-regal-rosewood mb-1">
           Ceremony Schedule
@@ -647,42 +609,42 @@
 
         <div class="space-y-4 max-w-md mx-auto text-left relative">
           
-          <!-- Event 1: Gathering -->
-          <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/85 border border-gold/40 shadow-xs hover:border-gold hover:shadow-md transition-all scroll-reveal stagger-1">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-gold-dark to-gold-metallic text-white flex items-center justify-center flex-shrink-0 shadow-sm">
+          <!-- Event 1: Gathering with Hover Slide -->
+          <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/85 border border-gold/40 shadow-xs hover:border-gold hover:shadow-md hover:translate-x-1.5 transition-all duration-300 scroll-reveal stagger-1 cursor-default group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-gold-dark to-gold-metallic text-white flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform">
               <i data-lucide="users" class="w-6 h-6"></i>
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-between">
-                <h4 class="font-cinzel font-bold text-sm text-regal-rosewood">Gathering &amp; Welcome</h4>
+                <h4 class="font-cinzel font-bold text-sm text-regal-rosewood group-hover:text-gold-dark transition-colors">Gathering &amp; Welcome</h4>
                 <span class="font-cinzel text-xs font-bold text-regal-emerald bg-ivory-sand px-2.5 py-0.5 rounded-full border border-gold/40">08:00 PM</span>
               </div>
               <p class="font-sans text-xs text-warmgray mt-0.5 font-medium">Warm reception of valued guests &amp; family</p>
             </div>
           </div>
 
-          <!-- Event 2: Dinner -->
-          <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/85 border border-gold/40 shadow-xs hover:border-gold hover:shadow-md transition-all scroll-reveal stagger-2">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#9e6f3b] to-[#d4af37] text-white flex items-center justify-center flex-shrink-0 shadow-sm">
+          <!-- Event 2: Dinner with Hover Slide -->
+          <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/85 border border-gold/40 shadow-xs hover:border-gold hover:shadow-md hover:translate-x-1.5 transition-all duration-300 scroll-reveal stagger-2 cursor-default group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#9e6f3b] to-[#d4af37] text-white flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform">
               <i data-lucide="utensils" class="w-6 h-6"></i>
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-between">
-                <h4 class="font-cinzel font-bold text-sm text-regal-rosewood">Royal Dinner</h4>
+                <h4 class="font-cinzel font-bold text-sm text-regal-rosewood group-hover:text-gold-dark transition-colors">Royal Dinner</h4>
                 <span class="font-cinzel text-xs font-bold text-gold-dark bg-ivory-sand px-2.5 py-0.5 rounded-full border border-gold/40">09:00 PM</span>
               </div>
               <p class="font-sans text-xs text-warmgray mt-0.5 font-medium">Grand celebratory banquet &amp; traditional feast</p>
             </div>
           </div>
 
-          <!-- Event 3: Greetings & Blessings -->
-          <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/85 border border-gold/40 shadow-xs hover:border-gold hover:shadow-md transition-all scroll-reveal stagger-3">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#2d4d38] to-[#1a3826] text-white flex items-center justify-center flex-shrink-0 shadow-sm">
+          <!-- Event 3: Greetings & Blessings with Hover Slide -->
+          <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/85 border border-gold/40 shadow-xs hover:border-gold hover:shadow-md hover:translate-x-1.5 transition-all duration-300 scroll-reveal stagger-3 cursor-default group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#2d4d38] to-[#1a3826] text-white flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform">
               <i data-lucide="heart-handshake" class="w-6 h-6"></i>
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-between">
-                <h4 class="font-cinzel font-bold text-sm text-regal-rosewood">Duas &amp; Photo-ops</h4>
+                <h4 class="font-cinzel font-bold text-sm text-regal-rosewood group-hover:text-gold-dark transition-colors">Duas &amp; Photo-ops</h4>
                 <span class="font-cinzel text-xs font-bold text-regal-emerald bg-ivory-sand px-2.5 py-0.5 rounded-full border border-gold/40">10:30 PM</span>
               </div>
               <p class="font-sans text-xs text-warmgray mt-0.5 font-medium">Heartfelt prayers and precious moments with newly weds</p>
@@ -694,8 +656,8 @@
 
       <!-- Venue & Google Maps Navigation Section -->
       <div class="py-8 px-6 sm:px-12 bg-ivory-sand/40 border-y border-gold/30 scroll-reveal">
-        <div class="w-12 h-12 rounded-full bg-gold/15 text-gold-dark mx-auto flex items-center justify-center mb-3 border border-gold/30">
-          <i data-lucide="map-pin" class="w-6 h-6"></i>
+        <div class="w-12 h-12 rounded-full bg-gold/15 text-gold-dark mx-auto flex items-center justify-center mb-3 border border-gold/30 hover-lift">
+          <i data-lucide="map-pin" class="w-6 h-6 animate-pulse"></i>
         </div>
         
         <h3 class="font-cinzel text-xs sm:text-sm font-bold tracking-[0.25em] uppercase text-warmgray mb-1">
@@ -711,7 +673,7 @@
           Korangi # 2½, Karachi.
         </p>
 
-        <!-- Direct Open in Google Maps Button -->
+        <!-- Direct Open in Google Maps Button with Hover Wave -->
         <div class="mt-5 flex flex-wrap items-center justify-center gap-3">
           <a href="https://www.google.com/maps/search/?api=1&query=Grand+Sapphire+Banquet+Coast+Guard+Chowrangi+Korangi+Karachi" target="_blank" class="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-regal-emerald text-ivory-cream text-xs font-cinzel font-bold tracking-widest uppercase hover:bg-regal-dark hover:scale-105 active:scale-95 transition-all shadow-md">
             <i data-lucide="navigation" class="w-4 h-4 text-gold-light"></i>
@@ -720,7 +682,7 @@
         </div>
       </div>
 
-      <!-- Direct Family Contacts (R.S.V.P - No Forms, Pure Direct One-Tap Actions) -->
+      <!-- Direct Family Contacts (R.S.V.P - Hover Lift Cards & Bouncing Action Buttons) -->
       <div class="py-8 px-6 sm:px-12 bg-gradient-to-b from-transparent via-white/80 to-transparent scroll-reveal">
         <div class="max-w-md mx-auto">
           <span class="font-cinzel text-[11px] font-black tracking-[0.3em] uppercase text-gold-dark block mb-1">
@@ -737,7 +699,7 @@
           <div class="space-y-3 text-left">
             
             <!-- Contact 1: Mr. & Mrs. Zaryab Sheikh -->
-            <div class="p-4 rounded-2xl bg-white border border-gold/40 shadow-xs flex items-center justify-between hover:border-gold transition-all scroll-reveal stagger-1">
+            <div class="p-4 rounded-2xl bg-white border border-gold/40 shadow-xs flex items-center justify-between hover-lift transition-all scroll-reveal stagger-1">
               <div>
                 <span class="font-cinzel font-bold text-xs sm:text-sm text-regal-rosewood block">
                   Mr. &amp; Mrs. Zaryab Sheikh
@@ -747,17 +709,17 @@
                 </span>
               </div>
               <div class="flex items-center gap-2">
-                <a href="tel:03122629273" class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center hover:bg-emerald-100 hover:scale-105 transition-all shadow-xs border border-emerald-200" title="Call Mr. & Mrs. Zaryab Sheikh">
+                <a href="tel:03122629273" class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center hover:bg-emerald-100 hover:scale-115 active:scale-90 transition-all shadow-xs border border-emerald-200" title="Call Mr. & Mrs. Zaryab Sheikh">
                   <i data-lucide="phone" class="w-4 h-4"></i>
                 </a>
-                <a href="https://wa.me/923122629273?text=Assalam-o-Alaikum!%20Heartiest%20congratulations%20on%20the%20Valima%20Reception%20of%20Ubaid-ur-Rehman!%20" target="_blank" class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-700 hover:scale-105 transition-all shadow-xs" title="WhatsApp Mr. & Mrs. Zaryab Sheikh">
+                <a href="https://wa.me/923122629273?text=Assalam-o-Alaikum!%20Heartiest%20congratulations%20on%20the%20Valima%20Reception%20of%20Ubaid-ur-Rehman!%20" target="_blank" class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-700 hover:scale-115 active:scale-90 transition-all shadow-xs" title="WhatsApp Mr. & Mrs. Zaryab Sheikh">
                   <i data-lucide="message-circle" class="w-4 h-4"></i>
                 </a>
               </div>
             </div>
 
             <!-- Contact 2: Mr. & Mrs. Noman Hamid -->
-            <div class="p-4 rounded-2xl bg-white border border-gold/40 shadow-xs flex items-center justify-between hover:border-gold transition-all scroll-reveal stagger-2">
+            <div class="p-4 rounded-2xl bg-white border border-gold/40 shadow-xs flex items-center justify-between hover-lift transition-all scroll-reveal stagger-2">
               <div>
                 <span class="font-cinzel font-bold text-xs sm:text-sm text-regal-rosewood block">
                   Mr. &amp; Mrs. Noman Hamid
@@ -767,17 +729,17 @@
                 </span>
               </div>
               <div class="flex items-center gap-2">
-                <a href="tel:03312089845" class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center hover:bg-emerald-100 hover:scale-105 transition-all shadow-xs border border-emerald-200" title="Call Mr. & Mrs. Noman Hamid">
+                <a href="tel:03312089845" class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center hover:bg-emerald-100 hover:scale-115 active:scale-90 transition-all shadow-xs border border-emerald-200" title="Call Mr. & Mrs. Noman Hamid">
                   <i data-lucide="phone" class="w-4 h-4"></i>
                 </a>
-                <a href="https://wa.me/923312089845?text=Assalam-o-Alaikum!%20Heartiest%20congratulations%20on%20the%20Valima%20Reception%20of%20Ubaid-ur-Rehman!%20" target="_blank" class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-700 hover:scale-105 transition-all shadow-xs" title="WhatsApp Mr. & Mrs. Noman Hamid">
+                <a href="https://wa.me/923312089845?text=Assalam-o-Alaikum!%20Heartiest%20congratulations%20on%20the%20Valima%20Reception%20of%20Ubaid-ur-Rehman!%20" target="_blank" class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-700 hover:scale-115 active:scale-90 transition-all shadow-xs" title="WhatsApp Mr. & Mrs. Noman Hamid">
                   <i data-lucide="message-circle" class="w-4 h-4"></i>
                 </a>
               </div>
             </div>
 
             <!-- Contact 3: Mr. & Mrs. Abdul Rehman -->
-            <div class="p-4 rounded-2xl bg-white border border-gold/40 shadow-xs flex items-center justify-between hover:border-gold transition-all scroll-reveal stagger-3">
+            <div class="p-4 rounded-2xl bg-white border border-gold/40 shadow-xs flex items-center justify-between hover-lift transition-all scroll-reveal stagger-3">
               <div>
                 <span class="font-cinzel font-bold text-xs sm:text-sm text-regal-rosewood block">
                   Mr. &amp; Mrs. Abdul Rehman
@@ -787,10 +749,10 @@
                 </span>
               </div>
               <div class="flex items-center gap-2">
-                <a href="tel:03130206595" class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center hover:bg-emerald-100 hover:scale-105 transition-all shadow-xs border border-emerald-200" title="Call Mr. & Mrs. Abdul Rehman">
+                <a href="tel:03130206595" class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center hover:bg-emerald-100 hover:scale-115 active:scale-90 transition-all shadow-xs border border-emerald-200" title="Call Mr. & Mrs. Abdul Rehman">
                   <i data-lucide="phone" class="w-4 h-4"></i>
                 </a>
-                <a href="https://wa.me/923130206595?text=Assalam-o-Alaikum!%20Heartiest%20congratulations%20on%20the%20Valima%20Reception%20of%20Ubaid-ur-Rehman!%20" target="_blank" class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-700 hover:scale-105 transition-all shadow-xs" title="WhatsApp Mr. & Mrs. Abdul Rehman">
+                <a href="https://wa.me/923130206595?text=Assalam-o-Alaikum!%20Heartiest%20congratulations%20on%20the%20Valima%20Reception%20of%20Ubaid-ur-Rehman!%20" target="_blank" class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-700 hover:scale-115 active:scale-90 transition-all shadow-xs" title="WhatsApp Mr. & Mrs. Abdul Rehman">
                   <i data-lucide="message-circle" class="w-4 h-4"></i>
                 </a>
               </div>
@@ -815,22 +777,22 @@
         </div>
       </div>
 
-      <!-- Quick Action Share & Cover Navigation Bar -->
+      <!-- Quick Action Share & Cover Navigation Bar with Hover Effects -->
       <div class="py-6 px-6 sm:px-12 bg-white/90 border-t border-gold/30 flex flex-wrap items-center justify-center gap-3">
         <!-- WhatsApp Share -->
-        <button onclick="shareViaWhatsApp()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-600 text-white font-sans text-xs font-semibold hover:bg-emerald-700 transition-all shadow-sm">
+        <button onclick="shareViaWhatsApp()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-600 text-white font-sans text-xs font-semibold hover:bg-emerald-700 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer">
           <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
           <span>Share on WhatsApp</span>
         </button>
 
         <!-- View Original Invitation Card Modal Button -->
-        <button onclick="openCardModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-ivory-sand border border-gold/60 text-regal-rosewood font-cinzel text-xs font-bold hover:border-gold hover:bg-ivory-warm/40 transition-all shadow-sm">
+        <button onclick="openCardModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-ivory-sand border border-gold/60 text-regal-rosewood font-cinzel text-xs font-bold hover:border-gold hover:bg-ivory-warm/50 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer">
           <i data-lucide="image" class="w-3.5 h-3.5 text-gold-dark"></i>
           <span>View Original Card</span>
         </button>
 
         <!-- Copy Link -->
-        <button onclick="copyInviteLink()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-gold/60 text-regal-rosewood font-sans text-xs font-semibold hover:border-gold hover:bg-ivory-warm/20 transition-all shadow-sm">
+        <button onclick="copyInviteLink()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-gold/60 text-regal-rosewood font-sans text-xs font-semibold hover:border-gold hover:bg-ivory-warm/20 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer">
           <i data-lucide="copy" class="w-3.5 h-3.5 text-gold-dark"></i>
           <span id="copyLinkText">Copy Link</span>
         </button>
@@ -857,7 +819,7 @@
   <!-- Couple Portrait Modal -->
   <div id="photoModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 hidden" onclick="closePhotoModal()">
     <div class="relative max-w-lg w-full bg-ivory-cream rounded-2xl overflow-hidden p-2 shadow-2xl border border-gold" onclick="event.stopPropagation()">
-      <button onclick="closePhotoModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/75 text-white flex items-center justify-center hover:bg-black transition-colors z-10 shadow-md">
+      <button onclick="closePhotoModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/75 text-white flex items-center justify-center hover:bg-black transition-colors z-10 shadow-md cursor-pointer">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
       <img src="images/pakistani_couple.jpg" alt="Royal Pakistani Wedding Portrait" class="w-full max-h-[80vh] object-cover rounded-xl shadow-inner">
@@ -871,7 +833,7 @@
   <!-- Original Physical Wedding Card Replica Modal -->
   <div id="cardModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 hidden" onclick="closeCardModal()">
     <div class="relative max-w-md w-full bg-ivory-cream rounded-2xl overflow-hidden p-3 shadow-2xl border border-gold" onclick="event.stopPropagation()">
-      <button onclick="closeCardModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-black/75 text-white flex items-center justify-center hover:bg-black transition-colors z-10 shadow-md">
+      <button onclick="closeCardModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-black/75 text-white flex items-center justify-center hover:bg-black transition-colors z-10 shadow-md cursor-pointer">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
       <img src="images/valima_card.jpg" alt="Official Valima Invitation Card" class="w-full max-h-[82vh] object-contain rounded-xl shadow-inner">
@@ -883,7 +845,7 @@
 
 
   <!-- ========================================================================= -->
-  <!-- JAVASCRIPT: LOGIC, PARTICLES, COUNTDOWN, AUDIO, CONFETTI & SYNC -->
+  <!-- JAVASCRIPT: LOGIC, PARTICLES, 3D TILT, AUDIO, CONFETTI & SYNC -->
   <!-- ========================================================================= -->
   <script>
     // Initialize Lucide Icons
@@ -897,8 +859,42 @@
     const musicIcon = document.getElementById('musicIcon');
     const openingFolio = document.getElementById('openingFolio');
     const openFolioBtn = document.getElementById('openFolioBtn');
+    const folioCardWrapper = document.getElementById('folioCardWrapper');
+    const folioCardGleam = document.getElementById('folioCardGleam');
 
     let isPlaying = false;
+
+    // Interactive 3D Parallax Tilt with Specular Glare on Hover / Mousemove
+    if (folioCardWrapper) {
+      folioCardWrapper.addEventListener('mousemove', (e) => {
+        const rect = folioCardWrapper.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        // Gentle 3D perspective rotation (max +/- 8 deg)
+        const rotateX = ((y - centerY) / centerY) * -8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+
+        folioCardWrapper.style.transform = `perspective(1100px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+
+        // Specular gold glare position
+        if (folioCardGleam) {
+          const gleamX = (x / rect.width) * 100;
+          const gleamY = (y / rect.height) * 100;
+          folioCardGleam.style.background = `radial-gradient(circle at ${gleamX}% ${gleamY}%, rgba(255, 255, 255, 0.5) 0%, rgba(212, 175, 55, 0.25) 35%, transparent 70%)`;
+          folioCardGleam.style.opacity = '1';
+        }
+      });
+
+      folioCardWrapper.addEventListener('mouseleave', () => {
+        folioCardWrapper.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        if (folioCardGleam) {
+          folioCardGleam.style.opacity = '0';
+        }
+      });
+    }
 
     // Music Toggle Function
     function toggleMusic() {
@@ -934,30 +930,30 @@
         lucide.createIcons();
       }).catch(err => console.log('Audio autoplay info:', err));
 
-      // 2. Celebratory Golden Confetti Burst
+      // 2. Celebratory Golden Confetti Burst (Multi-Angle)
       if (typeof confetti === 'function') {
         confetti({
-          particleCount: 90,
-          spread: 80,
+          particleCount: 100,
+          spread: 85,
           origin: { y: 0.6 },
           colors: ['#c5a059', '#d4af37', '#ffd700', '#faf5ed', '#8a6320']
         });
         setTimeout(() => {
           confetti({
-            particleCount: 55,
+            particleCount: 65,
             angle: 60,
-            spread: 55,
+            spread: 60,
             origin: { x: 0 },
-            colors: ['#c5a059', '#d4af37', '#f4e2be']
+            colors: ['#c5a059', '#d4af37', '#f4e2be', '#ffffff']
           });
           confetti({
-            particleCount: 55,
+            particleCount: 65,
             angle: 120,
-            spread: 55,
+            spread: 60,
             origin: { x: 1 },
-            colors: ['#c5a059', '#d4af37', '#f4e2be']
+            colors: ['#c5a059', '#d4af37', '#f4e2be', '#ffffff']
           });
-        }, 400);
+        }, 350);
       }
 
       // 3. Smooth Folio 3D Upward Fold Transition
@@ -967,7 +963,9 @@
         openingFolio.style.display = 'none';
       }, 1250);
     }
-    openFolioBtn.addEventListener('click', openFolio);
+    if (openFolioBtn) {
+      openFolioBtn.addEventListener('click', openFolio);
+    }
 
     // Back to Cover Folio Action
     function closeInvitation() {
