@@ -761,22 +761,16 @@
       </div>
 
       <!-- Quick Action Share & Cover Navigation Bar with Hover Effects -->
-      <div class="py-6 px-6 sm:px-12 bg-white/90 border-t border-gold/30 flex flex-wrap items-center justify-center gap-3 scroll-reveal">
+      <div class="py-6 px-6 sm:px-12 bg-white/90 border-t border-gold/30 flex flex-wrap items-center justify-center gap-4 scroll-reveal">
         <!-- WhatsApp Share -->
-        <button onclick="shareViaWhatsApp()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-600 text-white font-sans text-xs font-semibold hover:bg-emerald-700 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer">
-          <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+        <button onclick="shareViaWhatsApp()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 text-white font-sans text-xs font-semibold hover:bg-emerald-700 hover:scale-105 active:scale-95 transition-all shadow-md cursor-pointer">
+          <i data-lucide="share-2" class="w-4 h-4"></i>
           <span>Share on WhatsApp</span>
         </button>
 
-        <!-- View Original Invitation Card Modal Button -->
-        <button onclick="openCardModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-ivory-sand border border-gold/60 text-regal-rosewood font-cinzel text-xs font-bold hover:border-gold hover:bg-ivory-warm/50 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer">
-          <i data-lucide="image" class="w-3.5 h-3.5 text-gold-dark"></i>
-          <span>View Original Card</span>
-        </button>
-
         <!-- Copy Link -->
-        <button onclick="copyInviteLink()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-gold/60 text-regal-rosewood font-sans text-xs font-semibold hover:border-gold hover:bg-ivory-warm/20 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer">
-          <i data-lucide="copy" class="w-3.5 h-3.5 text-gold-dark"></i>
+        <button onclick="copyInviteLink()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-gold/70 text-regal-rosewood font-sans text-xs font-semibold hover:border-gold hover:bg-ivory-warm/30 hover:scale-105 active:scale-95 transition-all shadow-md cursor-pointer">
+          <i data-lucide="copy" class="w-4 h-4 text-gold-dark"></i>
           <span id="copyLinkText">Copy Link</span>
         </button>
       </div>
@@ -813,18 +807,7 @@
     </div>
   </div>
 
-  <!-- Original Physical Wedding Card Replica Modal -->
-  <div id="cardModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 hidden" onclick="closeCardModal()">
-    <div class="relative max-w-md w-full bg-ivory-cream rounded-2xl overflow-hidden p-3 shadow-2xl border border-gold" onclick="event.stopPropagation()">
-      <button onclick="closeCardModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-black/75 text-white flex items-center justify-center hover:bg-black transition-colors z-10 shadow-md cursor-pointer">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-      <img src="images/valima_card.jpg" alt="Official Valima Invitation Card" class="w-full max-h-[82vh] object-contain rounded-xl shadow-inner">
-      <div class="text-center py-2">
-        <p class="font-cinzel text-xs uppercase tracking-[0.2em] text-gold-dark font-bold">Official Physical Card</p>
-      </div>
-    </div>
-  </div>
+
 
 
   <!-- ========================================================================= -->
@@ -1023,12 +1006,6 @@
     }
     function closePhotoModal() {
       document.getElementById('photoModal').classList.add('hidden');
-    }
-    function openCardModal() {
-      document.getElementById('cardModal').classList.remove('hidden');
-    }
-    function closeCardModal() {
-      document.getElementById('cardModal').classList.add('hidden');
     }
 
     // Download Apple / iCal (.ics) Calendar File
