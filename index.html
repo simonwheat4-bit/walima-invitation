@@ -89,58 +89,6 @@
       animation: goldShimmer 4s linear infinite;
     }
 
-    /* Seal Crest Pulsing Glow */
-    @keyframes crestPulse {
-      0%, 100% {
-        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.45), 0 10px 30px rgba(138, 99, 32, 0.25);
-      }
-      50% {
-        box-shadow: 0 0 0 14px rgba(212, 175, 55, 0), 0 15px 45px rgba(212, 175, 55, 0.45);
-      }
-    }
-    .seal-pulse {
-      animation: crestPulse 2.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-
-    /* Continuous Button Shimmer */
-    @keyframes shimmerSlide {
-      0% { transform: translateX(-150%) skewX(-25deg); }
-      100% { transform: translateX(280%) skewX(-25deg); }
-    }
-    .btn-gold-shimmer {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, #fef4da 0%, #dfb559 30%, #c59837 60%, #996f1d 100%);
-      border: 1.5px solid #8a6320;
-      box-shadow: 
-        0 8px 25px rgba(138, 99, 32, 0.4),
-        inset 0 1.5px 1px rgba(255, 255, 255, 0.9),
-        inset 0 -1.5px 1px rgba(90, 60, 15, 0.5);
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .btn-gold-shimmer:hover {
-      transform: scale(1.03) translateY(-2px);
-      box-shadow: 
-        0 14px 35px rgba(138, 99, 32, 0.5),
-        inset 0 2px 2px rgba(255, 255, 255, 1),
-        0 0 20px rgba(212, 175, 55, 0.6);
-    }
-    .btn-gold-shimmer::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 55%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.75) 50%,
-        rgba(255, 255, 255, 0) 100%
-      );
-      animation: shimmerSlide 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    }
-
     /* Royal Folio Background (Ivory & Warm Cream Palace Theme) */
     .ivory-palace-bg {
       background-color: #faf5ed;
@@ -167,6 +115,19 @@
       transition: opacity 0.3s ease;
       mix-blend-mode: overlay;
       z-index: 15;
+    }
+
+    /* Continuous Button Pulsing Aura on Card */
+    @keyframes buttonAuraPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.55), 0 8px 25px rgba(138, 99, 32, 0.35);
+      }
+      50% {
+        box-shadow: 0 0 0 12px rgba(212, 175, 55, 0), 0 12px 35px rgba(212, 175, 55, 0.6);
+      }
+    }
+    .btn-aura-pulse {
+      animation: buttonAuraPulse 2.4s infinite;
     }
 
     /* Floating Petals & Gold Dust */
@@ -244,10 +205,12 @@
       pointer-events: none;
     }
 
-    /* Scroll Triggered Animations */
+    /* ======================================================== */
+    /* SCROLL REVEAL ANIMATIONS (SMOOTH & RICH ON SCROLL) */
+    /* ======================================================== */
     .scroll-reveal {
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(35px);
       transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: opacity, transform;
     }
@@ -255,19 +218,44 @@
       opacity: 1;
       transform: translateY(0);
     }
-    .scroll-scale {
+
+    .scroll-reveal-scale {
       opacity: 0;
-      transform: scale(0.94) translateY(20px);
+      transform: scale(0.92) translateY(24px);
       transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: opacity, transform;
     }
-    .scroll-scale.is-visible {
+    .scroll-reveal-scale.is-visible {
       opacity: 1;
       transform: scale(1) translateY(0);
     }
-    .stagger-1 { transition-delay: 0.12s; }
-    .stagger-2 { transition-delay: 0.24s; }
-    .stagger-3 { transition-delay: 0.36s; }
+
+    .scroll-reveal-left {
+      opacity: 0;
+      transform: translateX(-35px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .scroll-reveal-left.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scroll-reveal-right {
+      opacity: 0;
+      transform: translateX(35px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .scroll-reveal-right.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .delay-1 { transition-delay: 0.12s; }
+    .delay-2 { transition-delay: 0.24s; }
+    .delay-3 { transition-delay: 0.36s; }
+    .delay-4 { transition-delay: 0.48s; }
 
     /* Delicate Floral Filigree Corner CSS */
     .ornate-corner-tl {
@@ -301,7 +289,7 @@
       background-position: 0 0, 10px 10px;
     }
 
-    /* Hover Lift & Glow Animations on Interactive Elements */
+    /* Hover Lift & Glow Animations */
     .hover-lift {
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -326,6 +314,15 @@
     .lantern-sway {
       transform-origin: top center;
       animation: lanternSway 3.5s ease-in-out infinite;
+    }
+
+    /* Floating Scroll Cue */
+    @keyframes bounceSlow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+    .scroll-cue {
+      animation: bounceSlow 2s infinite ease-in-out;
     }
   </style>
 </head>
@@ -361,15 +358,15 @@
 
 
   <!-- ========================================================================= -->
-  <!-- 1. THE OPENING ROYAL FOLIO (COVER SCREEN) - MATCHING UPLOADED REFERENCE -->
+  <!-- 1. THE OPENING ROYAL FOLIO (COVER SCREEN) - PERFECTLY RESPONSIVE & ZERO CLUTTER -->
   <!-- ========================================================================= -->
-  <section id="openingFolio" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 ivory-palace-bg text-regal-rosewood folio-cover select-none overflow-y-auto">
+  <section id="openingFolio" class="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 ivory-palace-bg text-regal-rosewood folio-cover select-none overflow-hidden">
     
     <!-- Ambient Rose Petals & Gold Dust Particles -->
     <div id="introParticles" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
 
     <!-- Hanging Gold Filigree Lanterns (Fanoos) with Gentle Sway -->
-    <div class="fixed top-2 left-3 sm:left-6 w-8 sm:w-10 pointer-events-none z-20 opacity-90 drop-shadow-md lantern-sway hidden sm:block">
+    <div class="fixed top-2 left-3 sm:left-8 w-8 sm:w-11 pointer-events-none z-20 opacity-90 drop-shadow-md lantern-sway hidden sm:block">
       <svg viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
         <line x1="20" y1="0" x2="20" y2="34" stroke="#c5a059" stroke-width="1.5" stroke-dasharray="2 2"/>
         <path d="M12 34 C12 34, 20 28, 28 34 L32 54 C32 64, 20 72, 20 72 C20 72, 8 64, 8 54 Z" fill="#fff9e6" stroke="#8a6320" stroke-width="1.5"/>
@@ -379,7 +376,7 @@
       </svg>
     </div>
 
-    <div class="fixed top-2 right-3 sm:right-6 w-8 sm:w-10 pointer-events-none z-20 opacity-90 drop-shadow-md lantern-sway hidden sm:block" style="animation-delay: -1.75s;">
+    <div class="fixed top-2 right-3 sm:right-8 w-8 sm:w-11 pointer-events-none z-20 opacity-90 drop-shadow-md lantern-sway hidden sm:block" style="animation-delay: -1.75s;">
       <svg viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
         <line x1="20" y1="0" x2="20" y2="34" stroke="#c5a059" stroke-width="1.5" stroke-dasharray="2 2"/>
         <path d="M12 34 C12 34, 20 28, 28 34 L32 54 C32 64, 20 72, 20 72 C20 72, 8 64, 8 54 Z" fill="#fff9e6" stroke="#8a6320" stroke-width="1.5"/>
@@ -389,33 +386,19 @@
       </svg>
     </div>
 
-    <!-- The 3D Interactive Royal Folio Card Container with Parallax Hover -->
-    <div id="folioCardWrapper" class="folio-3d-wrapper relative z-10 max-w-[430px] w-full rounded-[2.3rem] overflow-hidden my-auto shadow-[0_25px_60px_-10px_rgba(138,99,32,0.4),0_0_0_2px_rgba(212,175,55,0.7)] group cursor-pointer bg-[#fdfbf7]" onclick="openFolio()">
+    <!-- The 3D Interactive Royal Folio Card Container (Always 100% in viewport without scroll) -->
+    <div id="folioCardWrapper" class="folio-3d-wrapper relative z-10 max-h-[92vh] max-w-[min(94vw,430px)] aspect-[765/1024] rounded-[2rem] sm:rounded-[2.4rem] overflow-hidden my-auto shadow-[0_25px_60px_-10px_rgba(138,99,32,0.45),0_0_0_2px_rgba(212,175,55,0.7)] group cursor-pointer bg-[#fdfbf7] flex items-center justify-center" onclick="openFolio()">
       
       <!-- Specular Dynamic Glare Layer that follows mouse -->
       <div id="folioCardGleam" class="specular-glare"></div>
 
-      <!-- The High-Resolution Royal Embossed Card Artwork -->
-      <div class="relative w-full overflow-hidden select-none">
-        <img src="images/royal_cover_folio.jpg" alt="Royal Valima Invitation Card" class="w-full h-auto block rounded-[2.3rem] transition-transform duration-500 group-hover:scale-[1.015]">
+      <!-- The High-Resolution Royal Embossed Card Artwork (Full and Crisp) -->
+      <img src="images/royal_cover_folio.jpg" alt="Royal Valima Invitation Card" class="w-full h-full object-contain rounded-[2rem] sm:rounded-[2.4rem] select-none pointer-events-none transition-transform duration-500 group-hover:scale-[1.015]">
 
-        <!-- Interactive Animated Overlay Over The Button Position -->
-        <div class="absolute bottom-[6.5%] left-0 right-0 px-7 sm:px-9 flex flex-col items-center z-20 pointer-events-auto" onclick="event.stopPropagation(); openFolio();">
-          
-          <!-- Pulsing & Shimmering Gold Button -->
-          <button id="openFolioBtn" class="btn-gold-shimmer w-full py-3 sm:py-3.5 px-6 rounded-full text-regal-rosewood font-cinzel font-black text-xs sm:text-sm tracking-[0.24em] uppercase flex items-center justify-center gap-2.5 shadow-xl transition-all cursor-pointer">
-            <i data-lucide="book-open" class="w-4 h-4 text-regal-rosewood"></i>
-            <span>TAP TO OPEN FOLIO</span>
-            <i data-lucide="sparkles" class="w-4 h-4 text-regal-rosewood transition-transform group-hover:rotate-45"></i>
-          </button>
-
-          <!-- Audio Prompt with Note Icon -->
-          <p class="mt-2 text-[10px] sm:text-[10.5px] font-sans text-regal-rosewood/85 font-semibold tracking-wide flex items-center justify-center gap-1.5 drop-shadow-xs">
-            <i data-lucide="music" class="w-3 h-3 text-gold-dark"></i>
-            <span>Opens with celebratory royal music &amp; gold confetti</span>
-          </p>
-        </div>
-
+      <!-- Interactive Clickable Hotspot over the Button area with Pulsing Glow Ring (NO DUPLICATE TEXT) -->
+      <div class="absolute bottom-[7.5%] left-[8%] right-[8%] h-[8%] rounded-full cursor-pointer z-20 btn-aura-pulse flex items-center justify-center border border-white/40 hover:scale-105 active:scale-95 transition-transform" title="Tap to Open Folio">
+        <!-- Subtle golden light sheen overlay -->
+        <div class="w-full h-full rounded-full bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
       </div>
 
     </div>
@@ -423,9 +406,9 @@
 
 
   <!-- ========================================================================= -->
-  <!-- 3. MAIN INVITATION CARD (INSIDE CONTENT) -->
+  <!-- 3. MAIN INVITATION CARD (INSIDE CONTENT WITH SCROLL-REVEAL ANIMATIONS) -->
   <!-- ========================================================================= -->
-  <main class="min-h-screen bg-[#161311] py-8 sm:py-14 px-3 sm:px-6 flex justify-center relative">
+  <main class="min-h-screen bg-[#161311] py-8 sm:py-14 px-3 sm:px-6 flex flex-col items-center justify-center relative">
     
     <!-- Floating Petals Container for Inside View -->
     <div id="mainPetals" class="fixed inset-0 pointer-events-none z-10 overflow-hidden"></div>
@@ -447,7 +430,7 @@
         
         <!-- Bismillah In Authentic Arabic with Perfect Line Height & Spacing -->
         <div class="my-5 pt-2 pb-1">
-          <div class="font-arabic text-3xl sm:text-4xl text-regal-emerald font-bold leading-[2.6] drop-shadow-xs block">
+          <div class="font-arabic text-3xl sm:text-4xl text-regal-emerald font-bold leading-[2.6] drop-shadow-xs block hover:scale-105 transition-transform duration-300">
             بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
           </div>
           <p class="font-cinzel text-[10px] sm:text-xs tracking-[0.28em] uppercase text-gold-dark font-bold pt-2.5 block">
@@ -479,7 +462,7 @@
       </div>
 
       <!-- Couple Focus Block: Valima Order (Groom First, With Bride) -->
-      <div class="py-3 px-6 sm:px-12 relative scroll-reveal stagger-1">
+      <div class="py-3 px-6 sm:px-12 relative scroll-reveal-scale delay-1">
         
         <!-- Groom's Name in Script with Shimmer -->
         <div class="mt-1 mb-2">
@@ -509,7 +492,7 @@
         </div>
 
         <!-- Quranic Blessing Card (Surah Ar-Rum 30:21) -->
-        <div class="my-6 p-4 sm:p-5 rounded-2xl bg-ivory-warm/30 border border-gold/40 text-regal-rosewood/90 text-xs sm:text-sm italic leading-relaxed shadow-xs max-w-lg mx-auto hover-lift">
+        <div class="my-6 p-4 sm:p-5 rounded-2xl bg-ivory-warm/30 border border-gold/40 text-regal-rosewood/90 text-xs sm:text-sm italic leading-relaxed shadow-xs max-w-lg mx-auto hover-lift scroll-reveal delay-2">
           <div class="font-arabic text-base sm:text-lg text-regal-emerald not-italic mb-3 font-bold leading-[2.2]">
             وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
           </div>
@@ -521,7 +504,7 @@
       </div>
 
       <!-- Couple Portrait: Pakistani Muslim Wedding Artwork (Hover Zoom & Expand) -->
-      <div class="px-6 sm:px-12 my-2 scroll-scale">
+      <div class="px-6 sm:px-12 my-2 scroll-reveal-scale delay-1">
         <div class="rounded-2xl overflow-hidden relative group cursor-pointer shadow-xl border-2 border-gold/50 outline outline-4 outline-ivory-warm/40 hover:outline-gold/60 transition-all duration-500" onclick="openPhotoModal()">
           <img src="images/pakistani_couple.jpg" alt="Pakistani Bride and Groom - Royal Valima Reception" class="w-full h-80 sm:h-96 object-cover object-top transition-transform duration-700 group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-center p-3 opacity-90 group-hover:opacity-100 transition-opacity">
@@ -562,32 +545,32 @@
           </div>
         </div>
 
-        <!-- Live Countdown Timer (4 Gold Framed Boxes with Hover Animation) -->
+        <!-- Live Countdown Timer (4 Gold Framed Boxes with Staggered Scroll Animation & Hover Lift) -->
         <div class="mt-6 pt-5 border-t border-gold/30">
           <p class="font-cinzel text-[11px] tracking-[0.28em] uppercase text-regal-rosewood/80 font-bold mb-3">
             Countdown To The Celebration
           </p>
           <div class="grid grid-cols-4 gap-2 sm:gap-3 max-w-sm mx-auto">
-            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm hover-lift cursor-default">
+            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm hover-lift cursor-default scroll-reveal delay-1">
               <span id="days" class="font-cinzel text-xl sm:text-2xl font-bold text-regal-emerald block">00</span>
               <span class="font-sans text-[9px] uppercase tracking-wider text-warmgray font-semibold">Days</span>
             </div>
-            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm hover-lift cursor-default">
+            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm hover-lift cursor-default scroll-reveal delay-2">
               <span id="hours" class="font-cinzel text-xl sm:text-2xl font-bold text-regal-emerald block">00</span>
               <span class="font-sans text-[9px] uppercase tracking-wider text-warmgray font-semibold">Hours</span>
             </div>
-            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm hover-lift cursor-default">
+            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm hover-lift cursor-default scroll-reveal delay-3">
               <span id="minutes" class="font-cinzel text-xl sm:text-2xl font-bold text-regal-emerald block">00</span>
               <span class="font-sans text-[9px] uppercase tracking-wider text-warmgray font-semibold">Mins</span>
             </div>
-            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm hover-lift cursor-default">
+            <div class="bg-white/90 border border-gold/40 rounded-xl p-2.5 shadow-sm hover-lift cursor-default scroll-reveal delay-4">
               <span id="seconds" class="font-cinzel text-xl sm:text-2xl font-bold text-gold-dark block">00</span>
               <span class="font-sans text-[9px] uppercase tracking-wider text-warmgray font-semibold">Secs</span>
             </div>
           </div>
 
           <!-- Add to Calendar Buttons with Hover Effects -->
-          <div class="flex flex-wrap items-center justify-center gap-2.5 mt-5">
+          <div class="flex flex-wrap items-center justify-center gap-2.5 mt-5 scroll-reveal delay-2">
             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Valima+Reception:+Ubaid-ur-Rehman+%26+Daughter+of+Nawaz+Qureshi&dates=20270114T150000Z/20270114T180000Z&details=Valima+Reception+of+Ubaid-ur-Rehman+at+Grand+Sapphire+Banquet,+Karachi.+Gathering:+08:00+PM,+Dinner:+09:00+PM.&location=Grand+Sapphire+Banquet,+Coast+Guard+Chowrangi,+Near+Byco+Petrol+Pump,+Korangi+2.5,+Karachi" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-gold/60 text-regal-rosewood hover:border-gold hover:bg-ivory-warm/40 hover:scale-105 active:scale-95 transition-all text-xs font-sans font-semibold shadow-xs">
               <i data-lucide="calendar-plus" class="w-3.5 h-3.5 text-gold-dark"></i>
               <span>Add to Google Calendar</span>
@@ -600,7 +583,7 @@
         </div>
       </div>
 
-      <!-- Ceremony Schedule / Program Timeline (Vertical Gold Roadmap with Hover Slide) -->
+      <!-- Ceremony Schedule / Program Timeline (Vertical Gold Roadmap with Alternating Slide Animations) -->
       <div class="py-7 px-6 sm:px-12 scroll-reveal">
         <h3 class="font-cinzel text-sm sm:text-base font-black tracking-[0.28em] uppercase text-regal-rosewood mb-1">
           Ceremony Schedule
@@ -609,8 +592,8 @@
 
         <div class="space-y-4 max-w-md mx-auto text-left relative">
           
-          <!-- Event 1: Gathering with Hover Slide -->
-          <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/85 border border-gold/40 shadow-xs hover:border-gold hover:shadow-md hover:translate-x-1.5 transition-all duration-300 scroll-reveal stagger-1 cursor-default group">
+          <!-- Event 1: Gathering with Scroll Reveal Left -->
+          <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/85 border border-gold/40 shadow-xs hover:border-gold hover:shadow-md hover:translate-x-1.5 transition-all duration-300 scroll-reveal-left delay-1 cursor-default group">
             <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-gold-dark to-gold-metallic text-white flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform">
               <i data-lucide="users" class="w-6 h-6"></i>
             </div>
@@ -623,8 +606,8 @@
             </div>
           </div>
 
-          <!-- Event 2: Dinner with Hover Slide -->
-          <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/85 border border-gold/40 shadow-xs hover:border-gold hover:shadow-md hover:translate-x-1.5 transition-all duration-300 scroll-reveal stagger-2 cursor-default group">
+          <!-- Event 2: Dinner with Scroll Reveal Right -->
+          <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/85 border border-gold/40 shadow-xs hover:border-gold hover:shadow-md hover:translate-x-1.5 transition-all duration-300 scroll-reveal-right delay-2 cursor-default group">
             <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#9e6f3b] to-[#d4af37] text-white flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform">
               <i data-lucide="utensils" class="w-6 h-6"></i>
             </div>
@@ -637,8 +620,8 @@
             </div>
           </div>
 
-          <!-- Event 3: Greetings & Blessings with Hover Slide -->
-          <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/85 border border-gold/40 shadow-xs hover:border-gold hover:shadow-md hover:translate-x-1.5 transition-all duration-300 scroll-reveal stagger-3 cursor-default group">
+          <!-- Event 3: Greetings & Blessings with Scroll Reveal Left -->
+          <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/85 border border-gold/40 shadow-xs hover:border-gold hover:shadow-md hover:translate-x-1.5 transition-all duration-300 scroll-reveal-left delay-3 cursor-default group">
             <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#2d4d38] to-[#1a3826] text-white flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform">
               <i data-lucide="heart-handshake" class="w-6 h-6"></i>
             </div>
@@ -695,11 +678,11 @@
             Tap to call or send heartfelt congratulations on WhatsApp
           </p>
 
-          <!-- 3 Family Contact Cards Extracted from Physical Card -->
+          <!-- 3 Family Contact Cards Extracted from Physical Card with Staggered Scroll Reveal -->
           <div class="space-y-3 text-left">
             
             <!-- Contact 1: Mr. & Mrs. Zaryab Sheikh -->
-            <div class="p-4 rounded-2xl bg-white border border-gold/40 shadow-xs flex items-center justify-between hover-lift transition-all scroll-reveal stagger-1">
+            <div class="p-4 rounded-2xl bg-white border border-gold/40 shadow-xs flex items-center justify-between hover-lift transition-all scroll-reveal-left delay-1">
               <div>
                 <span class="font-cinzel font-bold text-xs sm:text-sm text-regal-rosewood block">
                   Mr. &amp; Mrs. Zaryab Sheikh
@@ -719,7 +702,7 @@
             </div>
 
             <!-- Contact 2: Mr. & Mrs. Noman Hamid -->
-            <div class="p-4 rounded-2xl bg-white border border-gold/40 shadow-xs flex items-center justify-between hover-lift transition-all scroll-reveal stagger-2">
+            <div class="p-4 rounded-2xl bg-white border border-gold/40 shadow-xs flex items-center justify-between hover-lift transition-all scroll-reveal-right delay-2">
               <div>
                 <span class="font-cinzel font-bold text-xs sm:text-sm text-regal-rosewood block">
                   Mr. &amp; Mrs. Noman Hamid
@@ -739,7 +722,7 @@
             </div>
 
             <!-- Contact 3: Mr. & Mrs. Abdul Rehman -->
-            <div class="p-4 rounded-2xl bg-white border border-gold/40 shadow-xs flex items-center justify-between hover-lift transition-all scroll-reveal stagger-3">
+            <div class="p-4 rounded-2xl bg-white border border-gold/40 shadow-xs flex items-center justify-between hover-lift transition-all scroll-reveal-left delay-3">
               <div>
                 <span class="font-cinzel font-bold text-xs sm:text-sm text-regal-rosewood block">
                   Mr. &amp; Mrs. Abdul Rehman
@@ -762,8 +745,8 @@
         </div>
       </div>
 
-      <!-- Traditional Islamic Wedding Du'a -->
-      <div class="py-6 px-6 sm:px-12 bg-ivory-warm/20 border-t border-gold/30 scroll-reveal">
+      <!-- Traditional Islamic Wedding Du'a with Scroll Reveal Scale -->
+      <div class="py-6 px-6 sm:px-12 bg-ivory-warm/20 border-t border-gold/30 scroll-reveal-scale">
         <div class="max-w-md mx-auto">
           <p class="font-arabic text-xl sm:text-2xl text-regal-emerald font-bold mb-3 leading-[2.2]">
             بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
@@ -778,7 +761,7 @@
       </div>
 
       <!-- Quick Action Share & Cover Navigation Bar with Hover Effects -->
-      <div class="py-6 px-6 sm:px-12 bg-white/90 border-t border-gold/30 flex flex-wrap items-center justify-center gap-3">
+      <div class="py-6 px-6 sm:px-12 bg-white/90 border-t border-gold/30 flex flex-wrap items-center justify-center gap-3 scroll-reveal">
         <!-- WhatsApp Share -->
         <button onclick="shareViaWhatsApp()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-600 text-white font-sans text-xs font-semibold hover:bg-emerald-700 hover:scale-105 active:scale-95 transition-all shadow-sm cursor-pointer">
           <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
@@ -845,7 +828,7 @@
 
 
   <!-- ========================================================================= -->
-  <!-- JAVASCRIPT: LOGIC, PARTICLES, 3D TILT, AUDIO, CONFETTI & SYNC -->
+  <!-- JAVASCRIPT: LOGIC, PARTICLES, 3D TILT, AUDIO, CONFETTI & SCROLL OBSERVER -->
   <!-- ========================================================================= -->
   <script>
     // Initialize Lucide Icons
@@ -858,7 +841,6 @@
     const musicStatusText = document.getElementById('musicStatusText');
     const musicIcon = document.getElementById('musicIcon');
     const openingFolio = document.getElementById('openingFolio');
-    const openFolioBtn = document.getElementById('openFolioBtn');
     const folioCardWrapper = document.getElementById('folioCardWrapper');
     const folioCardGleam = document.getElementById('folioCardGleam');
 
@@ -873,23 +855,23 @@
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
         
-        // Gentle 3D perspective rotation (max +/- 8 deg)
-        const rotateX = ((y - centerY) / centerY) * -8;
-        const rotateY = ((x - centerX) / centerX) * 8;
+        // Gentle 3D perspective rotation (max +/- 7 deg)
+        const rotateX = ((y - centerY) / centerY) * -7;
+        const rotateY = ((x - centerX) / centerX) * 7;
 
-        folioCardWrapper.style.transform = `perspective(1100px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+        folioCardWrapper.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`;
 
         // Specular gold glare position
         if (folioCardGleam) {
           const gleamX = (x / rect.width) * 100;
           const gleamY = (y / rect.height) * 100;
-          folioCardGleam.style.background = `radial-gradient(circle at ${gleamX}% ${gleamY}%, rgba(255, 255, 255, 0.5) 0%, rgba(212, 175, 55, 0.25) 35%, transparent 70%)`;
+          folioCardGleam.style.background = `radial-gradient(circle at ${gleamX}% ${gleamY}%, rgba(255, 255, 255, 0.45) 0%, rgba(212, 175, 55, 0.2) 40%, transparent 70%)`;
           folioCardGleam.style.opacity = '1';
         }
       });
 
       folioCardWrapper.addEventListener('mouseleave', () => {
-        folioCardWrapper.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        folioCardWrapper.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
         if (folioCardGleam) {
           folioCardGleam.style.opacity = '0';
         }
@@ -919,7 +901,7 @@
     }
     musicToggle.addEventListener('click', toggleMusic);
 
-    // Open Folio Action (Music + 3D Transition + Confetti Burst)
+    // Open Folio Action (Music + 3D Transition + Confetti Burst + Trigger Scroll Observer)
     function openFolio() {
       // 1. Play Background Music
       bgMusic.play().then(() => {
@@ -933,21 +915,21 @@
       // 2. Celebratory Golden Confetti Burst (Multi-Angle)
       if (typeof confetti === 'function') {
         confetti({
-          particleCount: 100,
+          particleCount: 110,
           spread: 85,
           origin: { y: 0.6 },
           colors: ['#c5a059', '#d4af37', '#ffd700', '#faf5ed', '#8a6320']
         });
         setTimeout(() => {
           confetti({
-            particleCount: 65,
+            particleCount: 70,
             angle: 60,
             spread: 60,
             origin: { x: 0 },
             colors: ['#c5a059', '#d4af37', '#f4e2be', '#ffffff']
           });
           confetti({
-            particleCount: 65,
+            particleCount: 70,
             angle: 120,
             spread: 60,
             origin: { x: 1 },
@@ -958,13 +940,10 @@
 
       // 3. Smooth Folio 3D Upward Fold Transition
       openingFolio.classList.add('folio-open');
-      triggerInitialReveals();
       setTimeout(() => {
         openingFolio.style.display = 'none';
+        initScrollAnimations();
       }, 1250);
-    }
-    if (openFolioBtn) {
-      openFolioBtn.addEventListener('click', openFolio);
     }
 
     // Back to Cover Folio Action
@@ -1101,32 +1080,35 @@
       });
     }
 
-    // Scroll Reveal Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -30px 0px'
-    });
-
-    document.querySelectorAll('.scroll-reveal, .scroll-scale').forEach(el => {
-      observer.observe(el);
-    });
-
-    function triggerInitialReveals() {
-      setTimeout(() => {
-        document.querySelectorAll('.scroll-reveal, .scroll-scale').forEach(el => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight) {
-            el.classList.add('is-visible');
+    // ========================================================
+    // RICH SCROLL ANIMATIONS SYSTEM (INTERSECTION OBSERVER)
+    // ========================================================
+    function initScrollAnimations() {
+      const animatedEls = document.querySelectorAll('.scroll-reveal, .scroll-reveal-scale, .scroll-reveal-left, .scroll-reveal-right');
+      
+      const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
           }
         });
-      }, 250);
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      animatedEls.forEach(el => {
+        scrollObserver.observe(el);
+        // If element is already in current viewport, reveal it immediately
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) {
+          el.classList.add('is-visible');
+        }
+      });
     }
+
+    // Initial check on load
+    document.addEventListener('DOMContentLoaded', initScrollAnimations);
   </script>
 </body>
 </html>
