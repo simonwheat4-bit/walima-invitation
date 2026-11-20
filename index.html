@@ -827,6 +827,11 @@
     const folioCardWrapper = document.getElementById('folioCardWrapper');
     const folioCardGleam = document.getElementById('folioCardGleam');
 
+    // Soft & Gentle ambient background volume (bohat halki background melody)
+    if (bgMusic) {
+      bgMusic.volume = 0.15;
+    }
+
     let isPlaying = false;
 
     // Interactive 3D Parallax Tilt with Specular Glare on Hover / Mousemove
