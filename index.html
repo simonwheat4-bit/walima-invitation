@@ -413,6 +413,27 @@
     <!-- Floating Petals Container for Inside View -->
     <div id="mainPetals" class="fixed inset-0 pointer-events-none z-10 overflow-hidden"></div>
 
+    <!-- Hanging Gold Filigree Lanterns in Inside View (Swaying Gracefully in Corners) -->
+    <div class="fixed top-2 left-3 sm:left-8 w-7 sm:w-10 pointer-events-none z-20 opacity-80 drop-shadow-md lantern-sway hidden sm:block">
+      <svg viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
+        <line x1="20" y1="0" x2="20" y2="34" stroke="#c5a059" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <path d="M12 34 C12 34, 20 28, 28 34 L32 54 C32 64, 20 72, 20 72 C20 72, 8 64, 8 54 Z" fill="#fff9e6" stroke="#8a6320" stroke-width="1.5"/>
+        <circle cx="20" cy="52" r="5" fill="#ffd700" filter="drop-shadow(0 0 8px #f59e0b)"/>
+        <line x1="20" y1="72" x2="20" y2="86" stroke="#8a6320" stroke-width="1.5"/>
+        <circle cx="20" cy="86" r="2.5" fill="#8a6320"/>
+      </svg>
+    </div>
+
+    <div class="fixed top-2 right-3 sm:right-8 w-7 sm:w-10 pointer-events-none z-20 opacity-80 drop-shadow-md lantern-sway hidden sm:block" style="animation-delay: -1.75s;">
+      <svg viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
+        <line x1="20" y1="0" x2="20" y2="34" stroke="#c5a059" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <path d="M12 34 C12 34, 20 28, 28 34 L32 54 C32 64, 20 72, 20 72 C20 72, 8 64, 8 54 Z" fill="#fff9e6" stroke="#8a6320" stroke-width="1.5"/>
+        <circle cx="20" cy="52" r="5" fill="#ffd700" filter="drop-shadow(0 0 8px #f59e0b)"/>
+        <line x1="20" y1="72" x2="20" y2="86" stroke="#8a6320" stroke-width="1.5"/>
+        <circle cx="20" cy="86" r="2.5" fill="#8a6320"/>
+      </svg>
+    </div>
+
     <!-- Parchment Card Frame Container with Hover Depth -->
     <div class="w-full max-w-[640px] luxury-paper-bg shadow-[0_25px_80px_rgba(0,0,0,0.65)] rounded-3xl overflow-hidden border-2 border-gold/50 relative text-center">
 
@@ -426,10 +447,35 @@
       <div class="absolute inset-2 sm:inset-3 border border-gold/30 rounded-[1.4rem] pointer-events-none"></div>
 
       <!-- Top Royal Header Section -->
-      <div class="pt-10 sm:pt-12 px-6 sm:px-12 pb-4 relative scroll-reveal">
+      <div class="pt-8 sm:pt-10 px-6 sm:px-12 pb-4 relative scroll-reveal">
+
+        <!-- Royal Monogram Crest (U & J • 2027) with White Jasmine & Gold Laurel Accents (Matching Outer Folio) -->
+        <div class="flex items-center justify-center gap-2 sm:gap-4 mb-2 hover:scale-105 transition-transform duration-300">
+          <svg class="w-12 sm:w-16 h-5 text-gold opacity-80" viewBox="0 0 90 24" fill="none">
+            <path d="M0 12 Q45 0 90 12" stroke="currentColor" stroke-width="1.2"/>
+            <circle cx="35" cy="7" r="2.5" fill="#ffffff" stroke="currentColor" stroke-width="1"/>
+            <circle cx="65" cy="7" r="2.5" fill="#ffffff" stroke="currentColor" stroke-width="1"/>
+          </svg>
+
+          <div class="relative w-13 h-13 sm:w-15 sm:h-15 p-2 flex flex-col items-center justify-center rounded-full border-2 border-gold/80 bg-gradient-to-b from-[#fdfbf7] via-[#f7ede0] to-[#f4e2be] shadow-[0_4px_14px_rgba(197,160,89,0.3)]">
+            <svg class="absolute inset-0 w-full h-full text-gold p-0.5 pointer-events-none" viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
+              <path d="M25 60 C22 45 28 30 40 22" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M75 60 C78 45 72 30 60 22" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            <span class="font-cinzel text-sm sm:text-base font-black text-gold-dark tracking-wider leading-none">U &amp; J</span>
+            <span class="font-cinzel text-[7px] font-bold text-regal-emerald tracking-widest uppercase mt-0.5">2027</span>
+          </div>
+
+          <svg class="w-12 sm:w-16 h-5 text-gold opacity-80" viewBox="0 0 90 24" fill="none" style="transform: scaleX(-1);">
+            <path d="M0 12 Q45 0 90 12" stroke="currentColor" stroke-width="1.2"/>
+            <circle cx="35" cy="7" r="2.5" fill="#ffffff" stroke="currentColor" stroke-width="1"/>
+            <circle cx="65" cy="7" r="2.5" fill="#ffffff" stroke="currentColor" stroke-width="1"/>
+          </svg>
+        </div>
         
         <!-- Bismillah In Authentic Arabic with Perfect Line Height & Spacing -->
-        <div class="my-5 pt-2 pb-1">
+        <div class="my-4 pt-1 pb-1">
           <div class="font-arabic text-3xl sm:text-4xl text-regal-emerald font-bold leading-[2.6] drop-shadow-xs block hover:scale-105 transition-transform duration-300">
             بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
           </div>
@@ -827,9 +873,10 @@
     const folioCardWrapper = document.getElementById('folioCardWrapper');
     const folioCardGleam = document.getElementById('folioCardGleam');
 
-    // Soft & Gentle ambient background volume (bohat halki background melody)
+    // Ultra-Soft & Gentle ambient background volume (bohat halki aur slow background melody)
     if (bgMusic) {
-      bgMusic.volume = 0.15;
+      bgMusic.volume = 0.06;
+      bgMusic.playbackRate = 0.90;
     }
 
     let isPlaying = false;
@@ -891,7 +938,11 @@
 
     // Open Folio Action (Music + 3D Transition + Confetti Burst + Trigger Scroll Observer)
     function openFolio() {
-      // 1. Play Background Music
+      // 1. Play Background Music at very soft & slow ambient tempo
+      if (bgMusic) {
+        bgMusic.volume = 0.06;
+        bgMusic.playbackRate = 0.90;
+      }
       bgMusic.play().then(() => {
         isPlaying = true;
         soundBars.classList.remove('paused');
